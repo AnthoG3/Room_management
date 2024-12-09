@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block metatitle %}Categories | Task manager{% endblock %}
+
+{% block body %}
+    <h1>Category index</h1>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for category in categories %}
+            <tr>
+                <td>{{ category.id }}</td>
+                <td>{{ category.name }}</td>
+                <td>{{ category.description }}</td>
+                <td>
+                    <a href="{{ path('app_category_show', {'id': category.id}) }}" class="btn bg-info text-white mb-2 mt-2">show</a>
+                    <a href="{{ path('app_category_edit', {'id': category.id}) }}" class="btn bg-warning text-white mb-2 mt-2">edit</a>
+                    <a href="{{ path('app_category_delete', {'id': category.id}) }}" class="btn bg-danger text-white mb-2 mt-2">Supprimer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_category_new') }}" class="btn bg-success text-white mb-2 mt-2">Create new</a>
+{% endblock %}

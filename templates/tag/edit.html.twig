@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Tag{% endblock %}
+
+{% block body %}
+    <h1>Modifier un Tag</h1>
+
+    {{ include('tag/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_tag_index') }}" class="btn bg-info text-white mb-2 mt-2">Retour</a>
+    <a href="{{ path('app_tag_edit', {'id': tag.id}) }}" class="btn bg-warning text-white mb-2 mt-2">Modifier</a>
+    <a href="{{ path('app_tag_delete', {'id': tag.id}) }}" class="btn bg-danger text-white mb-2 mt-2" >Supprimer</a>
+
+    {{ include('tag/_delete_form.html.twig') }}
+{% endblock %}

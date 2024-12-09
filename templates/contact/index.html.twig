@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block metatitle %}Contact | Task manager{% endblock %}
+
+{% block body %}
+    <h1>Formulaire de contact</h1>
+
+    <div class="wrapper">
+        {{ form_start(form) }}
+        {{ form_widget(form, {'attr' : {'class': 'form-control'}}) }}
+        <button type="submit" class="btn btn-primary">Envoyer</button>
+        {{ form_end(form) }}
+
+    </div>
+{% endblock %}

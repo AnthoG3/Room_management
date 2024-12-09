@@ -1,0 +1,35 @@
+services:
+  web:
+    image: thecodingmachine/php:8.2-v4-apache-node22
+    ports:
+      - 80:80
+    volumes:
+      - ./:/var/www/html
+      - ~/.composer/auth.json:/root/.composer/auth.json
+    environment:
+      APACHE_DOCUMENT_ROOT: public
+      PHP_EXTENSION_PDO: 1
+      PHP_EXTENSION_PDO_MYSQL: 1
+      PHP_EXTENSION_GD: 1
+      PHP_EXTENSION_BCMATH: 1
+
+  db:
+    image: mariadb:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=toor
+      - MYSQL_DATABASE=project_1
+      - MYSQL_PASSWORD=toor
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    depends_on:
+      - db
+    environment:
+      - UPLOAD_LIMIT=6G
+    ports:
+      - "8080:80"
+
+volumes:
+  mysql_data:

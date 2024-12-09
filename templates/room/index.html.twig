@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block metatitle %}Salles | Task manager{% endblock %}
+
+{% block body %}
+    <h1>Tableau des salles</h1>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Capacité</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for room in rooms %}
+            <tr>
+                <td>{{ room.id }}</td>
+                <td>{{ room.name }}</td>
+                <td>{{ room.capacity }}</td>
+                <td>
+                    <a href="{{ path('app_room_show', {'id': room.id}) }}" class="btn bg-info text-white mb-2 mt-2">Voir</a>
+                    <a href="{{ path('app_room_edit', {'id': room.id}) }}" class="btn bg-warning text-white mb-2 mt-2">Modifier</a>
+                    <a href="{{ path('app_room_delete', {'id': room.id}) }}" class="btn bg-danger text-white mb-2 mt-2">Supprimer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_room_new') }}" class="btn bg-success text-white mb-2 mt-2">Ajouter une salle</a>
+{% endblock %}

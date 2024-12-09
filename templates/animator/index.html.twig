@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block metatitle %}Animateur | Task manager{% endblock %}
+
+{% block body %}
+    <h1>Tableau des animateurs</h1>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>N° de telephone</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for animator in animators %}
+            <tr>
+                <td>{{ animator.id }}</td>
+                <td>{{ animator.lastname }}</td>
+                <td>{{ animator.firstname }}</td>
+                <td>{{ animator.phone }}</td>
+                <td>{{ animator.email }}</td>
+                <td>
+                    <a href="{{ path('app_animator_show', {'id': animator.id}) }}" class="btn bg-info text-white mb-2 mt-2">Voir</a>
+                    <a href="{{ path('app_animator_edit', {'id': animator.id}) }}" class="btn bg-warning text-white mb-2 mt-2">Modifier</a>
+                    <a href="{{ path('app_animator_delete', {'id': animator.id}) }}" class="btn bg-danger text-white mb-2 mt-2">Supprimer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_animator_new') }}" class="btn bg-success text-white mb-2 mt-2">Ajouter un animateur</a>
+{% endblock %}
