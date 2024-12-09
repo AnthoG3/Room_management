@@ -74,6 +74,12 @@ final class EstablishmentController extends AbstractController
     public function delete(Request $request, Establishment $establishment, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$establishment->getId(), $request->getPayload()->getString('_token'))) {
+
+            foreach ($establishment->getRooms() as $room) {
+                foreach ($room->getImages() as $image) {
+                    unlink($this->getParameter('upload_directory').'/'.$image->getFileName());
+                }
+            }
             $entityManager->remove($establishment);
             $entityManager->flush();
 

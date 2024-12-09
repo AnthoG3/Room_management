@@ -32,7 +32,8 @@ class Event
     #[ORM\ManyToOne(targetEntity: Category::class)]
     private ?Category $category = null;
 
-    #[ORM\ManyToOne(targetEntity: Room::class)]
+    #[ORM\ManyToOne(targetEntity: Room::class,inversedBy: 'events')]
+    #[ORM\JoinColumn(onDelete: 'CASCADE')]
     private ?Room $room = null;
 
     public function getId(): ?int

@@ -36,15 +36,13 @@ class RoomType extends AbstractType
                 'label_attr' => ['class' => 'form-label'],
                 'label' => 'Capacité'
             ])
-            ->add('images', FileType::class, [
-                'mapped' => false,
-                'multiple' => true,
-                'required' => false,
-                'label' => 'Images',
-                'attr' => ['class' => 'form-control','accept' => ".jpeg, .jpg, .png"],
+            ->add('images', EntityType::class, [
+                'class' => Tag::class,
+                'choice_label' => 'name',
+                'attr' => ['class' => 'form-control'],
                 'label_attr' => ['class' => 'form-label'],
-                'constraints' => [
-                ]
+                'multiple' => true,
+                'label' => 'Tag',
             ])
             ->add('tags', EntityType::class, [
                 'class' => Tag::class,

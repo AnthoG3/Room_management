@@ -89,4 +89,9 @@ class Room
     {
         return $this->images;
     }
+    public function setImages(Collection $images): static
+    {
+        $this->images = $images;
+        return $this;
+    }
 }
